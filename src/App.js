@@ -1,14 +1,7 @@
 import "./App.css";
 import { getData } from "./service";
-import { useEffect, useState } from "react";
-import {
-  Accordion,
-  Badge,
-  Card,
-  Form,
-  ListGroup,
-  Pagination,
-} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Accordion, Badge, Card, ListGroup, Pagination } from "react-bootstrap";
 import {
   FacebookFilled,
   GlobalOutlined,
@@ -206,60 +199,78 @@ function App() {
                   </div>
                   <div className="card-body empty-radius">
                     <Accordion defaultActiveKey="0">
-                      <Accordion.Item eventKey="0">
-                        <Accordion.Header>Industry Sector</Accordion.Header>
-                        <Accordion.Body>
-                          {industries &&
-                            industries.map((industry, key) => (
-                              <div className="mb-3" key={key}>
-                                <Form.Check type="checkbox">
-                                  <Form.Check.Input
-                                    checked={filter.industry_category.includes(
-                                      industry.id
-                                    )}
-                                    type="checkbox"
-                                    onChange={(e) =>
-                                      handleFilterIndustry(e, industry?.id)
-                                    }
-                                  />
-                                  <Form.Check.Label>
-                                    {industry?.name ?? "-"}{" "}
-                                    <span className="text-muted">
-                                      ({industry?.count ?? 0})
-                                    </span>
-                                  </Form.Check.Label>
-                                </Form.Check>
+                      <Card>
+                        <Accordion.Toggle
+                          as={Card.Header}
+                          className="fw-bold"
+                          eventKey="0"
+                        >
+                          Industry Category
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                          <Card.Body>
+                            {industries.map((item) => (
+                              <div className="form-check" key={item.id}>
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  checked={filter.industry_category.includes(
+                                    item.id
+                                  )}
+                                  onChange={(e) =>
+                                    handleFilterIndustry(e, item.id)
+                                  }
+                                  id={`industry-${item.id}`}
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor={`industry-${item.id}`}
+                                >
+                                  {item.name}{" "}
+                                  <span className="text-gray">
+                                    ({item.count})
+                                  </span>
+                                </label>
                               </div>
                             ))}
-                        </Accordion.Body>
-                      </Accordion.Item>
-                      <Accordion.Item eventKey="1">
-                        <Accordion.Header>Country / Region</Accordion.Header>
-                        <Accordion.Body>
-                          {countries &&
-                            countries.map((country, key) => (
-                              <div className="mb-3" key={key}>
-                                <Form.Check type="checkbox">
-                                  <Form.Check.Input
-                                    type="checkbox"
-                                    checked={filter.country.includes(
-                                      country.id
-                                    )}
-                                    onChange={(e) =>
-                                      handleFilterCountry(e, country?.id)
-                                    }
-                                  />
-                                  <Form.Check.Label>
-                                    {country?.name ?? "-"}{" "}
-                                    <span className="text-muted">
-                                      ({country?.count ?? 0})
-                                    </span>
-                                  </Form.Check.Label>
-                                </Form.Check>
+                          </Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                      <Card>
+                        <Accordion.Toggle
+                          as={Card.Header}
+                          className="fw-bold"
+                          eventKey="1"
+                        >
+                          Country / Region
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="1">
+                          <Card.Body>
+                            {countries.map((item) => (
+                              <div className="form-check" key={item.id}>
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  checked={filter.country.includes(item.id)}
+                                  onChange={(e) =>
+                                    handleFilterCountry(e, item.id)
+                                  }
+                                  id={`country-${item.id}`}
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor={`country-${item.id}`}
+                                >
+                                  {item.name}{" "}
+                                  <span className="text-gray">
+                                    ({item.count})
+                                  </span>
+                                </label>
                               </div>
                             ))}
-                        </Accordion.Body>
-                      </Accordion.Item>
+                          </Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
                     </Accordion>
                   </div>
                 </div>
@@ -268,7 +279,7 @@ function App() {
                 <div className="row m-md-0 m-2">
                   <div className="col-12 mb-2">
                     <div className="input-group">
-                      <div className="w-92">
+                      <div className="w-90">
                         <input
                           type="text"
                           onChange={debounce(handleSearchWithDebounce, 500)}
@@ -388,7 +399,7 @@ function App() {
                                         }}
                                         onClick={() => detailExhibitor(item)}
                                       >
-                                        <span className="fs-3 text-black">
+                                        <span className="fs-4 text-black fw-bold">
                                           {item?.exhibitor_name}
                                         </span>
                                       </div>
