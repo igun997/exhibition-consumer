@@ -28,7 +28,7 @@ function App() {
     industry_category: [],
     country: [],
     _fields:
-      "id,title,content,exhibitor_name,logo,is_premium,banner_logo,description,country,industry_category,stand,fb_url,ig_url,twitter_url,yt_url,linkedln_url,company_url,company_phone,address,gallery_image_1,gallery_image_2,gallery_title_1,gallery_title_2",
+      "id,title,content,exhibitor_name,logo,is_premium,banner_logo,description,country,industry_category,stand,fb_url,ig_url,twitter_url,yt_url,ig_url,linkedln_url,company_url,company_email,company_phone,address,gallery_image_1,gallery_image_2,gallery_title_1,gallery_title_2",
     search: "",
     order: "asc",
     orderby: "is_premium",
@@ -488,7 +488,7 @@ function App() {
                                           }}
                                         />
                                         <a
-                                          href={item?.company_email ?? "#"}
+                                          href={`mailto:${item?.company_email}`}
                                           className="text-decoration-none"
                                         >
                                           Company Email
@@ -817,7 +817,7 @@ function App() {
                         </div>
                         <div className="col-12">
                           <a
-                            href={selectedPage?.company_email}
+                            href={`mailto:${selectedPage?.company_email}`}
                             className="text-decoration-none text-primary"
                           >
                             {selectedPage?.company_email === "#" ||
