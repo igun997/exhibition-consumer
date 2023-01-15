@@ -194,7 +194,7 @@ function App() {
   }, [filter]);
 
   return (
-    <>
+    <div className="directory-container">
       {selectedPage === null ? (
         <div className="row p-5" id="exhibitor-container">
           <div className="col-12 col-md-8 offset-md-2">
@@ -735,8 +735,7 @@ function App() {
                             <InstagramFilled
                               style={{
                                 fontSize: 30,
-                                color:
-                                  "linear-gradient(90deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%)",
+                                color: "#c13584",
                               }}
                             />
                           </span>
@@ -854,7 +853,7 @@ function App() {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
 
