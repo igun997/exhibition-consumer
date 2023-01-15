@@ -1,38 +1,71 @@
-.App {
-  text-align: center;
+@import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css');
+
+.empty-radius {
+    border-radius: 0px !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card-header {
+    background-color: #fff !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.accordion-button {
+    font-weight: bold !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.accordion-button:not(.collapsed) {
+    color: #fff !important;
+    background-color: #23acdd !important;
+    border-color: #23acdd !important;
 }
 
-.App-link {
-  color: #61dafb;
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-control {
+    border-radius: 0px !important;
 }
+
+.no-radius {
+    border-radius: 0px !important;
+    padding-top: 2px;
+}
+
+.anticon {
+    margin-bottom: 4px;
+}
+
+.w-90 {
+    width: 90% !important;
+}
+
+.w-95 {
+    width: 95% !important;
+}
+
+.w-92 {
+    width: 92% !important;
+}
+
+.w-10 {
+    width: 10% !important;
+}
+
+.premium-wrapper {
+    border: 1px solid rgb(247, 152, 81) !important;
+}
+
+.premium-wrapper-background {
+    background-color: rgba(247, 152, 81) !important;
+    color: white;
+}
+
+.premium-background {
+    background-color: rgba(247, 152, 81, 0.2) !important;
+}
+
+.label-text {
+    font-size: 12px;
+}
+
+
