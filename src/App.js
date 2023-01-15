@@ -12,6 +12,7 @@ import {
 import {
   FacebookFilled,
   GlobalOutlined,
+  InstagramFilled,
   LinkedinFilled,
   MailOutlined,
   PhoneOutlined,
@@ -720,6 +721,22 @@ function App() {
                               style={{
                                 fontSize: 30,
                                 color: "#ff0000",
+                              }}
+                            />
+                          </span>
+                        </div>
+                        <div className="col">
+                          <span
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            onClick={() => openLink(selectedPage?.ig_url)}
+                          >
+                            <InstagramFilled
+                              style={{
+                                fontSize: 30,
+                                color:
+                                  "linear-gradient(90deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%)",
                               }}
                             />
                           </span>
