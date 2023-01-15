@@ -212,7 +212,7 @@ function App() {
                             {industries.map((item) => (
                               <div className="form-check" key={item.id}>
                                 <input
-                                  className="form-check-input"
+                                  className="m-2"
                                   type="checkbox"
                                   checked={filter.industry_category.includes(
                                     item.id
@@ -249,7 +249,7 @@ function App() {
                             {countries.map((item) => (
                               <div className="form-check" key={item.id}>
                                 <input
-                                  className="form-check-input"
+                                  className="m-2"
                                   type="checkbox"
                                   checked={filter.country.includes(item.id)}
                                   onChange={(e) =>
@@ -278,8 +278,8 @@ function App() {
               <div className="col-md-8 col-12">
                 <div className="row m-md-0 m-2">
                   <div className="col-12 mb-2">
-                    <div className="input-group">
-                      <div className="w-90">
+                    <div className="row">
+                      <div className="col-12 col-md-9">
                         <input
                           type="text"
                           onChange={debounce(handleSearchWithDebounce, 500)}
@@ -287,7 +287,7 @@ function App() {
                           id="inputGroupFile04"
                         />
                       </div>
-                      <div className="input-group-append w-auto">
+                      <div className="col-12 col-md-3">
                         <button
                           className="btn btn-block btn-outline-secondary no-radius"
                           type="button"
