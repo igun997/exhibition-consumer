@@ -190,7 +190,7 @@ function App() {
     <div className="directory-container">
       {selectedPage === null ? (
         <div className="row p-5" id="exhibitor-container">
-          <div className="col-12 col-md-8 offset-md-2">
+          <div className="col-12">
             <div className="row">
               <div className="col-md-4 col-12">
                 <div className="card empty-radius">
