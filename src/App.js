@@ -10,11 +10,15 @@ import {
   Pagination,
 } from "react-bootstrap";
 import {
+  FacebookFilled,
   GlobalOutlined,
+  LinkedinFilled,
   MailOutlined,
   PhoneOutlined,
   PushpinOutlined,
   SearchOutlined,
+  TwitterSquareFilled,
+  YoutubeFilled,
 } from "@ant-design/icons";
 import { debounce } from "lodash";
 
@@ -169,6 +173,10 @@ function App() {
 
   const detailExhibitor = (item) => {
     setSelectedPage(item);
+  };
+
+  const openLink = (url) => {
+    window.open(url, "_blank");
   };
 
   const backToExhibitor = () => {
@@ -534,8 +542,299 @@ function App() {
         </div>
       ) : (
         <>
-          <button onClick={backToExhibitor}>Kembali</button>
-          Detail Page
+          <div className="row p-5" id="exhibitor-detail">
+            <div className="col-12 mb-2">
+              <span
+                style={{
+                  cursor: "pointer",
+                }}
+                className="text-secondary"
+                onClick={backToExhibitor}
+              >
+                {" < "} Back to Exhibitor List
+              </span>
+            </div>
+            <div className="col-12 col-md-9">
+              <div className="card">
+                <div className="card-body">
+                  <div className="row mb-3">
+                    <div className="col-12">
+                      <span className="fs-6 fw-bold">Brands we represent</span>
+                    </div>
+                    <div className="col-12">
+                      <p>{selectedPage?.exhibitor_name}</p>
+                    </div>
+                  </div>
+                  <div className="row mb-1">
+                    <div className="col-12">
+                      <span className="fs-6 fw-bold">Description</span>
+                    </div>
+                    <div className="col-12">
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: selectedPage?.content?.rendered,
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row mb-1">
+                    <div className="col-12">
+                      <span className="fs-6 fw-bold">Country / Region</span>
+                    </div>
+                    <div className="col-12">
+                      {countries
+                        .filter((e) => selectedPage?.country.includes(e.id))
+                        .map((e) => e.name)
+                        .map((_name) => (
+                          <Badge bg="secondary">{_name}</Badge>
+                        ))}
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row mb-1">
+                    <div className="col-12">
+                      <span className="fs-6 fw-bold">Industry Sector</span>
+                    </div>
+                    <div className="col-12">
+                      {industries
+                        .filter((e) =>
+                          selectedPage?.industry_category.includes(e.id)
+                        )
+                        .map((e) => e.name)
+                        .map((_name) => (
+                          <Badge bg="secondary">{_name}</Badge>
+                        ))}
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row mb-1">
+                    <div className="col-12">
+                      <span className="fs-6 fw-bold">Country / Region</span>
+                    </div>
+                    <div className="col-12">
+                      {countries
+                        .filter((e) => selectedPage?.country.includes(e.id))
+                        .map((e) => e.name)
+                        .map((_name) => (
+                          <Badge bg="secondary">{_name}</Badge>
+                        ))}
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="row mb-1">
+                    <div className="col-12">
+                      <span className="fs-4 fw-bold">
+                        Gallery of products and services
+                      </span>
+                    </div>
+                    <div className="col-12">
+                      <div className="row g-2">
+                        <div className="col-md-6 col-12 text-center">
+                          <Card>
+                            <Card.Img
+                              variant="top"
+                              src={selectedPage?.gallery_image_1}
+                            />
+                            <Card.Body>
+                              <Card.Title>
+                                {selectedPage?.gallery_title_1}
+                              </Card.Title>
+                            </Card.Body>
+                          </Card>
+                        </div>
+                        <div className="col-md-6 col-12 text-center">
+                          <Card>
+                            <Card.Img
+                              variant="top"
+                              src={selectedPage?.gallery_image_2}
+                            />
+                            <Card.Body>
+                              <Card.Title>
+                                {selectedPage?.gallery_title_2}
+                              </Card.Title>
+                            </Card.Body>
+                          </Card>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="row">
+                <div className="col-12">
+                  <div className="card profile-nav">
+                    <div
+                      className="user-heading round"
+                      style={{
+                        backgroundImage: `url(${selectedPage?.banner_logo})`,
+                      }}
+                    >
+                      <a href="#">
+                        <img src={selectedPage?.logo} alt="" />
+                      </a>
+                      <h1 className="fw-bold">
+                        {selectedPage?.exhibitor_name}
+                      </h1>
+                      <div className="row">
+                        <div className="col">
+                          <span
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            onClick={() => openLink(selectedPage?.fb_url)}
+                          >
+                            <FacebookFilled
+                              style={{
+                                fontSize: 30,
+                                color: "#3b5998",
+                              }}
+                            />
+                          </span>
+                        </div>
+                        <div className="col">
+                          <span
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            onClick={() => openLink(selectedPage?.twitter_url)}
+                          >
+                            <TwitterSquareFilled
+                              style={{
+                                fontSize: 30,
+                                color: "#00acee",
+                              }}
+                            />
+                          </span>
+                        </div>
+                        <div className="col">
+                          <span
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            onClick={() => openLink(selectedPage?.yt_url)}
+                          >
+                            <YoutubeFilled
+                              style={{
+                                fontSize: 30,
+                                color: "#ff0000",
+                              }}
+                            />
+                          </span>
+                        </div>
+                        <div className="col">
+                          <span
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            onClick={() => openLink(selectedPage?.linkedln_url)}
+                          >
+                            <LinkedinFilled
+                              style={{
+                                fontSize: 30,
+                                color: "#0e76a8",
+                              }}
+                            />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-12 mt-2">
+                  <div className="card bg-section text-black">
+                    <div className="card-body d-flex justify-content-left">
+                      <PushpinOutlined
+                        style={{
+                          marginTop: 4,
+                          marginRight: 6,
+                          fontWeight: "bold",
+                        }}
+                      />
+                      <span>
+                        <span className="fw-bold">Stand : </span>
+                        {selectedPage?.stand}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-12 mt-2">
+                  <div className="card bg-section text-black">
+                    <div className="card-body">
+                      <div className="row mb-2">
+                        <div className="col-12">
+                          <span className="fw-bold text-uppercase">
+                            Company Website
+                          </span>
+                        </div>
+                        <div className="col-12">
+                          <a
+                            href={selectedPage?.company_url}
+                            className="text-decoration-none text-primary"
+                          >
+                            {selectedPage?.company_url === "#" ||
+                            selectedPage?.company_url === null
+                              ? "-"
+                              : selectedPage?.company_url}
+                          </a>
+                        </div>
+                      </div>
+                      <div className="row mb-2">
+                        <div className="col-12">
+                          <span className="fw-bold text-uppercase">
+                            Company Email
+                          </span>
+                        </div>
+                        <div className="col-12">
+                          <a
+                            href={selectedPage?.company_email}
+                            className="text-decoration-none text-primary"
+                          >
+                            {selectedPage?.company_email === "#" ||
+                            selectedPage?.company_email === null ||
+                            selectedPage?.company_email === undefined
+                              ? "-"
+                              : selectedPage?.company_email}
+                          </a>
+                        </div>
+                      </div>
+                      <div className="row mb-2">
+                        <div className="col-12">
+                          <span className="fw-bold text-uppercase">
+                            Company Phone
+                          </span>
+                        </div>
+                        <div className="col-12">
+                          <a
+                            href={`tel:${selectedPage?.company_phone}`}
+                            className="text-decoration-none text-primary"
+                          >
+                            {selectedPage?.company_phone === "#" ||
+                            selectedPage?.company_phone === null
+                              ? ""
+                              : selectedPage?.company_phone}
+                          </a>
+                        </div>
+                      </div>
+                      <div className="row mb-2">
+                        <div className="col-12">
+                          <span className="fw-bold text-uppercase">
+                            Address
+                          </span>
+                        </div>
+                        <div className="col-12">
+                          {selectedPage?.address ?? "-"}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </>
       )}
     </>
