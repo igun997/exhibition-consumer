@@ -129,6 +129,17 @@ function App() {
     setFilter(newFilter);
   };
 
+  const removeHtmlTags = (str) => {
+    if (str === null || str === "") return false;
+    else str = str.toString();
+    return str.replace(/<[^>]*>/g, "");
+  };
+
+  const limitText = (text, limit) => {
+    const newText = text.split(" ").splice(0, limit).join(" ");
+    return newText;
+  };
+
   const removeIndustryFilter = (id) => {
     const newFilter = { ...filter };
     newFilter.industry_category = newFilter.industry_category.filter(
@@ -440,12 +451,17 @@ function App() {
                                         <span className="fs-6 fw-bold">
                                           Description
                                         </span>
-                                        <div
-                                          dangerouslySetInnerHTML={{
-                                            __html:
-                                              item?.content?.rendered ?? "",
-                                          }}
-                                        />
+                                        <p>
+                                          {limitText(
+                                            removeHtmlTags(
+                                              item?.content?.rendered ?? ""
+                                            ),
+                                            50
+                                          )}
+                                          {removeHtmlTags(
+                                            item?.content?.rendered ?? ""
+                                          ).length > 50 && "..."}
+                                        </p>
                                       </div>
                                       <div className="col-12">
                                         <span className="fs-6 fw-bold">
@@ -512,7 +528,7 @@ function App() {
                                   </div>
                                   <div className="col-12 mt-2">
                                     <div className="row g-2">
-                                      <div className="col-md-6 col-12 text-center">
+                                      <div className="col-md-3 col-12 text-center">
                                         <Card>
                                           <Card.Img
                                             variant="top"
@@ -525,7 +541,7 @@ function App() {
                                           </Card.Body>
                                         </Card>
                                       </div>
-                                      <div className="col-md-6 col-12 text-center">
+                                      <div className="col-md-3 col-12 text-center">
                                         <Card>
                                           <Card.Img
                                             variant="top"
@@ -642,7 +658,7 @@ function App() {
                     </div>
                     <div className="col-12">
                       <div className="row g-2">
-                        <div className="col-md-6 col-12 text-center">
+                        <div className="col-md-3 col-12 text-center">
                           <Card>
                             <Card.Img
                               variant="top"
@@ -655,7 +671,7 @@ function App() {
                             </Card.Body>
                           </Card>
                         </div>
-                        <div className="col-md-6 col-12 text-center">
+                        <div className="col-md-3 col-12 text-center">
                           <Card>
                             <Card.Img
                               variant="top"
