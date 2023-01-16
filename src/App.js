@@ -587,7 +587,7 @@ function App() {
                 <div className="card-body">
                   <div className="row mb-3">
                     <div className="col-12">
-                      <span className="fs-6 fw-bold">Brands we represent</span>
+                      <span className="fs-6 fw-bold">Company Name</span>
                     </div>
                     <div className="col-12">
                       <p>{selectedPage?.exhibitor_name}</p>
@@ -703,85 +703,86 @@ function App() {
                       <a href="#">
                         <img src={selectedPage?.logo} alt="" />
                       </a>
-                      <h1 className="fw-bold">
-                        {selectedPage?.exhibitor_name}
-                      </h1>
-                      <div className="row">
-                        <div className="col">
-                          <span
+                    </div>
+                  </div>
+                </div>
+                <div className="col-12 mt-2">
+                  <div className="card bg-section text-black">
+                    <div className="row m-3">
+                      <div className="col">
+                        <span
+                          style={{
+                            cursor: "pointer",
+                          }}
+                          onClick={() => openLink(selectedPage?.fb_url)}
+                        >
+                          <FacebookFilled
                             style={{
-                              cursor: "pointer",
+                              fontSize: 30,
+                              color: "#3b5998",
                             }}
-                            onClick={() => openLink(selectedPage?.fb_url)}
-                          >
-                            <FacebookFilled
-                              style={{
-                                fontSize: 30,
-                                color: "#3b5998",
-                              }}
-                            />
-                          </span>
-                        </div>
-                        <div className="col">
-                          <span
+                          />
+                        </span>
+                      </div>
+                      <div className="col">
+                        <span
+                          style={{
+                            cursor: "pointer",
+                          }}
+                          onClick={() => openLink(selectedPage?.twitter_url)}
+                        >
+                          <TwitterSquareFilled
                             style={{
-                              cursor: "pointer",
+                              fontSize: 30,
+                              color: "#00acee",
                             }}
-                            onClick={() => openLink(selectedPage?.twitter_url)}
-                          >
-                            <TwitterSquareFilled
-                              style={{
-                                fontSize: 30,
-                                color: "#00acee",
-                              }}
-                            />
-                          </span>
-                        </div>
-                        <div className="col">
-                          <span
+                          />
+                        </span>
+                      </div>
+                      <div className="col">
+                        <span
+                          style={{
+                            cursor: "pointer",
+                          }}
+                          onClick={() => openLink(selectedPage?.yt_url)}
+                        >
+                          <YoutubeFilled
                             style={{
-                              cursor: "pointer",
+                              fontSize: 30,
+                              color: "#ff0000",
                             }}
-                            onClick={() => openLink(selectedPage?.yt_url)}
-                          >
-                            <YoutubeFilled
-                              style={{
-                                fontSize: 30,
-                                color: "#ff0000",
-                              }}
-                            />
-                          </span>
-                        </div>
-                        <div className="col">
-                          <span
+                          />
+                        </span>
+                      </div>
+                      <div className="col">
+                        <span
+                          style={{
+                            cursor: "pointer",
+                          }}
+                          onClick={() => openLink(selectedPage?.ig_url)}
+                        >
+                          <InstagramFilled
                             style={{
-                              cursor: "pointer",
+                              fontSize: 30,
+                              color: "#c13584",
                             }}
-                            onClick={() => openLink(selectedPage?.ig_url)}
-                          >
-                            <InstagramFilled
-                              style={{
-                                fontSize: 30,
-                                color: "#c13584",
-                              }}
-                            />
-                          </span>
-                        </div>
-                        <div className="col">
-                          <span
+                          />
+                        </span>
+                      </div>
+                      <div className="col">
+                        <span
+                          style={{
+                            cursor: "pointer",
+                          }}
+                          onClick={() => openLink(selectedPage?.linkedln_url)}
+                        >
+                          <LinkedinFilled
                             style={{
-                              cursor: "pointer",
+                              fontSize: 30,
+                              color: "#0e76a8",
                             }}
-                            onClick={() => openLink(selectedPage?.linkedln_url)}
-                          >
-                            <LinkedinFilled
-                              style={{
-                                fontSize: 30,
-                                color: "#0e76a8",
-                              }}
-                            />
-                          </span>
-                        </div>
+                          />
+                        </span>
                       </div>
                     </div>
                   </div>
