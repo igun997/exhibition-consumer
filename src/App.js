@@ -357,7 +357,7 @@ function App() {
                           disabled={filter.page === 1}
                           onClick={prev}
                         />
-                        <GeneratePagination />
+                        {/*<GeneratePagination />*/}
                         <Pagination.Next
                           disabled={filter.page == countPage}
                           onClick={next}
