@@ -136,8 +136,11 @@ function App() {
   };
 
   const limitText = (text, limit) => {
-    const newText = text.split(" ").splice(0, limit).join(" ");
-    return newText;
+    if (text) {
+      const newText = text.split(" ").splice(0, limit).join(" ");
+      return newText;
+    }
+    return "";
   };
 
   const removeIndustryFilter = (id) => {
