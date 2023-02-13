@@ -383,7 +383,7 @@ function App() {
                                 <div
                                   className={`card-header empty-radius premium-wrapper-background`}
                                 >
-                                  Premium
+                                  MAJOR EXHIBITOR
                                 </div>
                               )}
                               <div

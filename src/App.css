@@ -148,16 +148,16 @@
 
 
 .premium-wrapper {
-    border: 1px solid rgb(247, 152, 81) !important;
+    border: 1px solid rgb(13, 110, 253) !important;
 }
 
 .premium-wrapper-background {
-    background-color: rgba(247, 152, 81) !important;
+    background-color: rgb(13, 110, 253) !important;
     color: white;
 }
 
 .premium-background {
-    background-color: rgba(247, 152, 81, 0.2) !important;
+    background-color: rgb(13, 110, 253, 0.2) !important;
 }
 
 .bg-section {
