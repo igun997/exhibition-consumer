@@ -15,6 +15,7 @@ import {
   YoutubeFilled,
 } from "@ant-design/icons";
 import { debounce } from "lodash";
+import FilterCenter from "./FilterCenter";
 
 function App() {
   const [industries, setIndustries] = useState([]);
@@ -30,6 +31,7 @@ function App() {
     _fields:
       "id,title,content,exhibitor_name,logo,is_premium,banner_logo,description,country,industry_category,stand,fb_url,ig_url,twitter_url,yt_url,ig_url,linkedln_url,company_url,company_email,company_phone,address,gallery_image_1,gallery_image_2,gallery_title_1,gallery_title_2",
     search: "",
+    search_first: "",
     order: "asc",
     orderby: "is_premium",
     page: 1,
@@ -38,6 +40,9 @@ function App() {
   const loadIndustryCategories = () => {
     getData("industry_category", {
       _fields: "id,name,slug,count",
+      per_page: 100,
+      order: "desc",
+      orderby: "id",
     }).then((res) => {
       setIndustries(res.data ?? []);
     });
@@ -46,6 +51,9 @@ function App() {
   const loadCountries = () => {
     getData("country", {
       _fields: "id,name,slug,count",
+      per_page: 100,
+      order: "desc",
+      orderby: "id",
     }).then((res) => {
       setCountries(res.data ?? []);
     });
@@ -129,6 +137,18 @@ function App() {
     setFilter(newFilter);
   };
 
+  const unescapeHtml = (unsafe) => {
+    if (unsafe) {
+      return unsafe
+        .replace(/&amp;/g, "&")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;/g, "'")
+        .replace(/&nbsp;/g, " ");
+    }
+    return "";
+  };
   const removeHtmlTags = (str) => {
     if (str === null || str === "") return false;
     else str = str.toString();
@@ -189,6 +209,11 @@ function App() {
 
   const backToExhibitor = () => {
     setSelectedPage(null);
+  };
+
+  const handleSearchFirst = (e) => {
+    const newFilter = { ...filter, search_first: e === "All" ? null : e };
+    setFilter(newFilter);
   };
 
   useEffect(() => {
@@ -343,26 +368,37 @@ function App() {
                         </Badge>
                       ))}
                   </div>
-                  <div className="col-md-6 col-12 mb-2">
+                  <div className="col-md-3 col-12 mb-2 mt-1 text-left">
                     {count > 0 && <span>Showing {count} results</span>}
                   </div>
-                  <div className="col-md-6 col-12 mb-2">
+                  <div className="col-md-7 col-12 mb-2 mt-1 text-center">
+                    <FilterCenter
+                      value={
+                        filter.search_first === "" ? "All" : filter.search_first
+                      }
+                      onChange={handleSearchFirst}
+                    />
+                  </div>
+                  <div className="col-md-2 col-12 mb-2 ">
                     {countPage > 1 && (
-                      <Pagination>
+                      <Pagination className="float-right">
                         <Pagination.First
+                          className="mr-2"
                           disabled={filter.page === 1}
                           onClick={first}
                         />
                         <Pagination.Prev
+                          className="mr-2"
                           disabled={filter.page === 1}
                           onClick={prev}
                         />
-                        {/*<GeneratePagination />*/}
                         <Pagination.Next
+                          className="mr-2"
                           disabled={filter.page == countPage}
                           onClick={next}
                         />
                         <Pagination.Last
+                          className="mr-2"
                           disabled={filter.page == countPage}
                           onClick={last}
                         />
@@ -618,7 +654,7 @@ function App() {
                         .filter((e) => selectedPage?.country.includes(e.id))
                         .map((e) => e.name)
                         .map((_name) => (
-                          <Badge bg="secondary">{_name}</Badge>
+                          <Badge bg="secondary">{unescapeHtml(_name)}</Badge>
                         ))}
                     </div>
                   </div>
@@ -634,7 +670,7 @@ function App() {
                         )
                         .map((e) => e.name)
                         .map((_name) => (
-                          <Badge bg="secondary">{_name}</Badge>
+                          <Badge bg="secondary">{unescapeHtml(_name)}</Badge>
                         ))}
                     </div>
                   </div>
@@ -648,7 +684,7 @@ function App() {
                         .filter((e) => selectedPage?.country.includes(e.id))
                         .map((e) => e.name)
                         .map((_name) => (
-                          <Badge bg="secondary">{_name}</Badge>
+                          <Badge bg="secondary">{unescapeHtml(_name)}</Badge>
                         ))}
                     </div>
                   </div>
