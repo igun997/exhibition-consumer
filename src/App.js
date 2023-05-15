@@ -139,13 +139,8 @@ function App() {
 
   const unescapeHtml = (unsafe) => {
     if (unsafe) {
-      return unsafe
-        .replace(/&amp;/g, "&")
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/&quot;/g, '"')
-        .replace(/&#039;/g, "'")
-        .replace(/&nbsp;/g, " ");
+      return new DOMParser().parseFromString(unsafe, "text/html")
+        .documentElement.textContent;
     }
     return "";
   };
@@ -212,7 +207,11 @@ function App() {
   };
 
   const handleSearchFirst = (e) => {
-    const newFilter = { ...filter, search_first: e === "All" ? null : e };
+    const newFilter = {
+      ...filter,
+      page: 1,
+      search_first: e === "All" ? null : e,
+    };
     setFilter(newFilter);
   };
 
@@ -369,7 +368,7 @@ function App() {
                       ))}
                   </div>
                   <div className="col-md-3 col-12 mb-2 mt-1 text-left">
-                    {count > 0 && <span>Showing {count} results</span>}
+                    <span>Showing {count} results</span>
                   </div>
                   <div className="col-md-7 col-12 mb-2 mt-1 text-center">
                     <FilterCenter
@@ -455,7 +454,7 @@ function App() {
                                       </div>
                                       <div className="col-12">
                                         <span className="fst-italic label-text m-2">
-                                          Sponsor of{" "}
+                                          Exhibitor of{" "}
                                         </span>
                                         <Badge bg="secondary">
                                           {
@@ -493,12 +492,16 @@ function App() {
                                         <p>
                                           {limitText(
                                             removeHtmlTags(
-                                              item?.content?.rendered ?? ""
+                                              unescapeHtml(
+                                                item?.content?.rendered ?? ""
+                                              )
                                             ),
                                             50
                                           )}
                                           {removeHtmlTags(
-                                            item?.content?.rendered ?? ""
+                                            unescapeHtml(
+                                              item?.content?.rendered ?? ""
+                                            )
                                           ).length > 50 && "..."}
                                         </p>
                                       </div>
@@ -639,7 +642,7 @@ function App() {
                     <div className="col-12">
                       <div
                         dangerouslySetInnerHTML={{
-                          __html: selectedPage?.content?.rendered,
+                          __html: unescapeHtml(selectedPage?.content?.rendered),
                         }}
                       />
                     </div>
